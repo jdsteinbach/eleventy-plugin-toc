@@ -1,0 +1,29 @@
+{
+  "name": "eleventy-plugin-toc",
+  "version": "1.0.0",
+  "description": "Generate a TOC for a page rendered with 11ty",
+  "main": ".eleventy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdsteinbach/eleventy-plugin-toc.git"
+  },
+  "keywords": [
+    "11ty",
+    "eleventy",
+    "plugin",
+    "toc",
+    "table of contents"
+  ],
+  "author": "James Steinbach",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jdsteinbach/eleventy-plugin-toc/issues"
+  },
+  "homepage": "https://github.com/jdsteinbach/eleventy-plugin-toc#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2"
+  }
+}
