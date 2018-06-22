@@ -1,42 +1,19 @@
 const cheerio = require('cheerio')
+const NestHeadings = require('./NestHeadings')
 const BuildList = require('./BuildList')
 
 const BuildTOC = (text, opts) => {
   const { tags, wrapper, wrapperClass } = Object.assign({}, opts, {
-    tags: ['h2', 'h3'],
+    tags: ['h2', 'h3', 'h4'],
     wrapper: 'nav',
     wrapperClass: 'toc'
   })
+
   const $ = cheerio.load(text)
 
-  let headings = []
+  const headings = NestHeadings(tags, $)
 
-  $(tags.join()).each((i, el) => {
-    let tag = el.name
-    let id = $(el).attr('id')
-    let text = $(el).text().replace(' #', '')
-    let hierarchy = tags.indexOf(tag)
-    let parent = (hierarchy > 0)
-      ? $(el).prevAll(tags[hierarchy - 1]).attr('id')
-      : false
-
-    let holder = headings
-    if ( parent ) {
-      let parentHeading = headings.find(h => (h.id === parent)).children
-      if ( parentHeading ) {
-        holder = parentHeading
-      }
-    }
-
-    holder.push({
-      tag,
-      id,
-      text,
-      children: []
-    })
-  })
-
-  return ( headings.length > 0 )
+  return ( headings )
     ? `<${wrapper} class="${wrapperClass}">${BuildList(headings)}</${wrapper}>`
     : ''
 }
