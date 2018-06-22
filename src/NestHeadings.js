@@ -14,7 +14,7 @@ const NestHeadings = (tags, $) => {
     .reverse()
     .filter(t => temp[t].length > 0)
     .map((k) => {
-      let index = tags.indexOf(k)
+      const index = tags.indexOf(k)
 
       temp[k].map(h => {
         let parent = headings

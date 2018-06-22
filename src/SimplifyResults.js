@@ -1,12 +1,12 @@
 const SimplifyResults = (tag, tags, $) => {
-  const results = []
+  let results = []
 
   $(`${tag}[id]`).each((i, el) => {
-    let tag = el.name
-    let id = $(el).attr('id')
-    let text = $(el).text().replace(' #', '')
-    let hierarchy = tags.indexOf(tag)
-    let parent = ( hierarchy > 0 )
+    const tag = el.name
+    const id = $(el).attr('id')
+    const text = $(el).text().replace(' #', '')
+    const hierarchy = tags.indexOf(tag)
+    const parent = ( hierarchy > 0 )
       ? $(el).prevAll(tags[hierarchy - 1]).attr('id')
       : false
 
