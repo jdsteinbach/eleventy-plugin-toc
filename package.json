@@ -1,6 +1,6 @@
 {
   "name": "eleventy-plugin-toc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Eleventy filter to generate a Table of Contents in a template",
   "main": ".eleventy.js",
   "scripts": {
