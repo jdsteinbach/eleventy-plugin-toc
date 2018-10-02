@@ -20,7 +20,7 @@ const BuildTOC = (text, opts) => {
 
   return ( headings )
     ? `<${wrapper} class="${wrapperClass}">${BuildList(headings)}</${wrapper}>`
-    : ''
+    : false
 }
 
 module.exports = BuildTOC
