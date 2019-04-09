@@ -8,14 +8,15 @@ const BuildLink = ({id, text, children}) => {
     : ''
 }
 
-const BuildList = (listItems) => {
-  const list = listItems
-    .sort((a, b) => a.order > b.order)
-    .map(li => BuildLink(li))
+const BuildList = (headings) => {
+  const rootLevel = +headings[0].slice(1);
 
-  return ( list.length > 0 )
-    ? `<ol>${list.join('')}</ol>`
-    : ''
+    const navigation = [headings[0]];
+    let parent = +navigation[0].slice(1);
+
+     $(`<ol></ol>`).append(headings.map(h => {
+
+    }))
 }
 
 module.exports = BuildList

@@ -1,7 +1,18 @@
 const buildTOC = require('./src/BuildTOC')
+const parseOptions = require('./src/ParseOptions')
 
-module.exports = function(eleventyConfig, pluginNamespace) {
-  eleventyConfig.namespace(pluginNamespace, () => {
-    eleventyConfig.addFilter('toc', (content, opts) => buildTOC(content, opts))
-  })
+const defaults = {
+  tags: ['h2', 'h3', 'h4'],
+  wrapper: 'nav',
+  wrapperClass: 'toc'
+}
+
+module.exports = {
+  initArguments: {},
+  configFunction: function(eleventyConfig, options = {}) {
+    eleventyConfig.addFilter('toc', (content, opts) => {
+      const usageOpts = parseOptions(opts, {...defaults, ...options});
+      buildTOC(content, usageOpts);
+    })
+  }
 }

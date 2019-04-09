@@ -5,22 +5,20 @@ const ParseOptions = require('./ParseOptions')
 const NestHeadings = require('./NestHeadings')
 const BuildList = require('./BuildList')
 
-const defaults = {
-  tags: ['h2', 'h3', 'h4'],
-  wrapper: 'nav',
-  wrapperClass: 'toc'
-}
 
 const BuildTOC = (text, opts) => {
-  const { tags, wrapper, wrapperClass } = ParseOptions(opts, defaults)
+  const { tags, wrapper, wrapperClass } = opts;
 
   const $ = cheerio.load(text)
 
-  const headings = NestHeadings(tags, $)
+
+  //Get all the headings
+  const selectors = tags.join(',');
+  const headings =$(selectors).filter('[id]');
 
   return ( headings )
-    ? `<${wrapper} class="${wrapperClass}">${BuildList(headings)}</${wrapper}>`
-    : ''
+    ? `<${wrapper} class="${wrapperClass}">${BuildList(headings, rootLevel)}</${wrapper}>`
+    : false
 }
 
 module.exports = BuildTOC
