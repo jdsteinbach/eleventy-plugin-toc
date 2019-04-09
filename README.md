@@ -59,7 +59,7 @@ const defaults = {
 ## Install
 
 ```sh
-npm i --save JordanShurmer/elevent-plugin-toc
+npm i --save eleventy-plugin-nesting-toc
 ```
 
 ## Usage
