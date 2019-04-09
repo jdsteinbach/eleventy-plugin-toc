@@ -1,14 +1,14 @@
 {
-  "name": "eleventy-plugin-toc",
-  "version": "1.0.1",
-  "description": "Eleventy filter to generate a Table of Contents in a template",
+  "name": "eleventy-plugin-nesting-toc",
+  "version": "1.0.0",
+  "description": "Eleventy plugin which adds a filter to generate a Table of Contents from html",
   "main": ".eleventy.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./test.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jdsteinbach/eleventy-plugin-toc.git"
+    "url": "git+https://github.com/JordanShurmer/eleventy-plugin-toc.git"
   },
   "keywords": [
     "11ty",
@@ -17,13 +17,16 @@
     "toc",
     "table of contents"
   ],
-  "author": "James Steinbach",
+  "author": "Jordan Shurmer",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jdsteinbach/eleventy-plugin-toc/issues"
+    "url": "https://github.com/JordanShurmer/eleventy-plugin-toc/issues"
   },
-  "homepage": "https://github.com/jdsteinbach/eleventy-plugin-toc#readme",
+  "homepage": "https://github.com/JordanShurmer/eleventy-plugin-toc#readme",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.2"
+    "cheerio": "^1.0.0-rc.3"
+  },
+  "devDependencies": {
+    "chalk": "^2.4.2"
   }
 }
