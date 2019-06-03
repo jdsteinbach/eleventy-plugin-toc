@@ -3,7 +3,9 @@ const cheerio = require('cheerio');
 const defaults = {
     tags: ['h2', 'h3', 'h4'],
     wrapper: 'nav',
-    wrapperClass: 'toc'
+    wrapperClass: 'toc',
+    headingText: '',
+    headingTag: 'h2'
 };
 
 function getParent(prev, current) {
@@ -81,13 +83,21 @@ class Toc {
     }
 
     html() {
-        const {wrapper, wrapperClass} = this.options;
-        return `
-<${wrapper} class="${wrapperClass}">
-    ${this.get().html()}
-</${wrapper}>
-`
+        const {wrapper, wrapperClass, headingText, headingTag} = this.options;
+        const root = this.get();
 
+        let html = '';
+
+        if (root.children.length) {
+
+            if (headingText) {
+                html += `<${headingTag}>${headingText}</${headingTag}>\n`;
+            }
+
+            html += `<${wrapper} class="${wrapperClass}">${root.html()}</${wrapper}>`;
+        }
+
+        return html;
     }
 }
 

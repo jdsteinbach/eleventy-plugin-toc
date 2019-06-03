@@ -50,9 +50,11 @@ Generated TOC:
 
 ```javascript
 const defaults = {
-  tags: ['h2', 'h3', 'h4'], // which heading tags are selected (headings must each have an ID attribute)
-  wrapper: 'nav',           // element to put around the root `ol`
-  wrapperClass: 'toc'       // class for the element around the root `ol`
+  tags: ['h2', 'h3', 'h4'], // Which heading tags are selected (headings must each have an ID attribute)
+  wrapper: 'nav',       // Element to put around the root `ol`
+  wrapperClass: 'toc',  // Class for the element around the root `ol`
+  headingText: '',      // Optional text to show in heading above the wrapper element
+  headingTag: 'h2'      // Heading tag when showing heading above the wrapper element
 }
 ```
 
@@ -66,7 +68,7 @@ npm i --save eleventy-plugin-nesting-toc
 
 ### Adding it to the Eleventy Engine
 
-Note: Your heading tags will need to have `id`s on them, so that the TOC can provide proper anchor links to them. Eleventy does not do this for you ootb. You can use a plugin like [markdown-it-anchor](https://www.npmjs.com/package/markdown-it-anchor) to add those `id`s to the headings automagically
+**IMPORTANT NOTE**: Your heading tags will need to have `id`s on them, so that the TOC can provide proper anchor links to them. Eleventy does not do this for you ootb. You can use a plugin like [markdown-it-anchor](https://www.npmjs.com/package/markdown-it-anchor) to add those `id`s to the headings automagically
 
 ```diff
 // .eleventy.js
@@ -94,7 +96,7 @@ module.exports = function (eleventyConfig) {
 ```nunjucks
 <aside>
   {{ content | toc | safe }}
-</article>
+</aside>
 <article>
   {{ content }}
 </article>

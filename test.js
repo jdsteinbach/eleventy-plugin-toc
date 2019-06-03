@@ -32,6 +32,24 @@ const tests = {
         assert.equal(results.children[1].text, 'Baz');
     },
 
+    withHeadingTextOptions() {
+        const toc = new Toc(`<h2 id="foo">Foo</h2>`, {headingText: 'Sections'});
+        const html = toc.html();
+        assert.ok(html.includes(`<h2>Sections</h2>`), 'TOC heading of h2 was not found');
+    },
+
+    withHeadingTextAndHeadingTagOptions() {
+        const toc = new Toc(`<h2 id="foo">Foo</h2>`, {headingText: 'Sections', headingTag: 'h5'});
+        const html = toc.html();
+        assert.ok(html.includes(`<h5>Sections</h5>`), 'TOC heading of h5 was not found');
+    },
+
+    withHeadingOptionsButNoHeadings() {
+        const toc = new Toc(`<div>Hello World</div>`, {headingText: 'Sections'});
+        const html = toc.html();
+        assert.ok(!html.includes(`<h2>Sections</h2>`), 'Unexpected TOC heading of h2 was found');
+    },
+
     nesting() {
         const toc = new Toc(`
             <h1>Foo</h1>
