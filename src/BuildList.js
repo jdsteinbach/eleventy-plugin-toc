@@ -10,7 +10,7 @@ const BuildLink = ({id, text, children}) => {
 
 const BuildList = (listItems) => {
   const list = listItems
-    .sort((a, b) => a.order > b.order)
+    .sort((a, b) => a.order - b.order)
     .map(li => BuildLink(li))
 
   return ( list.length > 0 )
