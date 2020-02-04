@@ -1,5 +1,8 @@
 const cheerio = require('cheerio');
 
+/** Attribute which if found on a heading means the heading is excluded */
+const ignoreAttribute = 'data-toc-exclude';
+
 const defaults = {
     tags: ['h2', 'h3', 'h4'],
     wrapper: 'nav',
@@ -64,7 +67,10 @@ class Toc {
         this.root.parent = this.root;
 
         const $ = cheerio.load(htmlstring);
-        const headings = $(selector).filter('[id]');
+
+        const headings = $(selector)
+            .filter('[id]')
+            .filter(`:not([${ignoreAttribute}])`);
 
         if (headings.length) {
             let previous = this.root;

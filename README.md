@@ -125,6 +125,13 @@ And override those just for one template, as it's being invoked
 </aside>
 ```
 
+If you have specific headings which you don't want to be included in the TOC, you can add the `data-toc-exclude` attribute to exclude these headings.
+
+One way to add this attribute is via the use of the <a href="https://www.npmjs.com/package/markdown-it-attrs" target="_blank" rel="noopener">markdown-it-attrs</a> npm package.
+```markdown
+### Level 3 heading to ignore {data-toc-exclude}
+```
+
 
 ## Gotchyas
 

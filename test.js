@@ -32,6 +32,18 @@ const tests = {
         assert.equal(results.children[1].text, 'Baz');
     },
 
+    twoH2sWithOneBeingExcluded() {
+        const toc = new Toc(`
+            <h1>Page Title</h1>
+                <h2 id="section1">Section 1</h2>
+                <h2 id="section2" data-toc-exclude>Section 2</h2>
+        `);
+        const results = toc.get();
+        assert.equal(results.children.length, 1);
+        assert.equal(results.children[0].slug, 'section1');
+        assert.equal(results.children[0].text, 'Section 1');
+    },
+
     withHeadingTextOptions() {
         const toc = new Toc(`<h2 id="foo">Foo</h2>`, {headingText: 'Sections'});
         const html = toc.html();
@@ -112,7 +124,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit
 </p>
         `
         const toc = new Toc(html);
-        console.log(toc.html());
+        // console.log(toc.html());
     }
 };
 

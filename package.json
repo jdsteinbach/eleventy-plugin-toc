@@ -1,6 +1,6 @@
 {
   "name": "eleventy-plugin-nesting-toc",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Eleventy plugin which adds a filter to generate a Table of Contents from html",
   "main": ".eleventy.js",
   "scripts": {
