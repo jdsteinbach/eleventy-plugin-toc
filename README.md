@@ -6,10 +6,10 @@ This Eleventy plugin will generate a TOC from page content using an Eleventy fil
 
 ```js
 {
-  tags: ['h2', 'h3', 'h4'], // which heading tags are selected
-                            // headings must each have an ID attribute
-  wrapper: 'nav',           // element to put around the root `ol`
-  wrapperClass: 'toc'       // class for the element around the root `ol`
+  tags: ['h2', 'h3', 'h4'], // which heading tags are selected headings must each have an ID attribute
+  wrapper: 'nav',           // element to put around the root `ol`/`ul`
+  wrapperClass: 'toc'       // class for the element around the root `ol`/`ul`
+  ul: false                 // if to use `ul` instead of `ol`
 }
 ```
 
@@ -96,10 +96,10 @@ Pass a stringified JSON object (must be `JSON.parse()`-able) as an option for in
 ```liquid
 <aside>
   {{ content | toc: '{"tags":["h2","h3"],"wrapper":"div","wrapperClass":"content-tableau"}' }}
-</article>
+</aside>
 ```
 
 ## Roadmap
 
-* [ ] I'd like to expose the default options to overriding in an Eleventy config file
-* [ ] Some tests would be nice
+- [ ] I'd like to expose the default options to overriding in an Eleventy config file
+- [ ] Some tests would be nice

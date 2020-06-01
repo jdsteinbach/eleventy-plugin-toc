@@ -17,13 +17,14 @@ const _buildLink = ({id, text, children}) => {
     : ''
 }
 
-const BuildList = (listItems) => {
+const BuildList = (listItems, ul) => {
+  const listType = ul ? 'ul' : 'ol'
   const list = listItems
     .sort((a, b) => a.order - b.order)
     .map(li => _buildLink(li))
 
   return ( list.length > 0 )
-    ? `<ol>${list.join('')}</ol>`
+    ? `<${listType}>${list.join('')}</${listType}>`
     : ''
 }
 
