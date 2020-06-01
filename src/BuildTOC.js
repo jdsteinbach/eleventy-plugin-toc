@@ -8,11 +8,12 @@ const BuildList = require('./BuildList')
 const defaults = {
   tags: ['h2', 'h3', 'h4'],
   wrapper: 'nav',
-  wrapperClass: 'toc'
+  wrapperClass: 'toc',
+  ul: false
 }
 
 const BuildTOC = (text, opts) => {
-  const { tags, wrapper, wrapperClass } = ParseOptions(opts, defaults)
+  const { tags, wrapper, wrapperClass, ul } = ParseOptions(opts, defaults)
 
   const $ = cheerio.load(text)
 

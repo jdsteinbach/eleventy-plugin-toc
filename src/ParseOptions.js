@@ -1,7 +1,11 @@
 const ParseOptions = (userOptions, defaultOptions) => {
   let safeOptions = {}
   try {
-    safeOptions = JSON.parse(userOptions);
+    if (typeof userOptions === 'string') {
+      safeOptions = JSON.parse(userOptions)
+    } else if (typeof userOptions === 'object') {
+      safeOptions = userOptions
+    }
   } catch (e) {
     safeOptions = {}
   }
