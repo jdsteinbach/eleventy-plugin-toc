@@ -1,4 +1,4 @@
-const buildTOC = require('./src/BuildTOC');
+const buildTOC = require('./src/BuildTOC')
 
 module.exports = (function() {
   let _opts = {}

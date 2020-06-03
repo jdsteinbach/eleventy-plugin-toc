@@ -9,18 +9,19 @@ const defaults = {
   tags: ['h2', 'h3', 'h4'],
   wrapper: 'nav',
   wrapperClass: 'toc',
-  ul: false
+  ul: false,
+  flat: false
 }
 
 const BuildTOC = (text, opts) => {
-  const { tags, wrapper, wrapperClass, ul } = ParseOptions(opts, defaults)
+  const { tags, wrapper, wrapperClass, ul, flat } = ParseOptions(opts, defaults)
 
   const $ = cheerio.load(text)
 
   const headings = NestHeadings(tags, $)
 
   return (headings.length > 0)
-    ? `<${wrapper} class="${wrapperClass}">${BuildList(headings)}</${wrapper}>`
+    ? `<${wrapper} class="${wrapperClass}">${BuildList(headings, ul, flat)}</${wrapper}>`
     : undefined
 }
 
