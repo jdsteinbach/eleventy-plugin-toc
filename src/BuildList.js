@@ -7,21 +7,29 @@ const _escText = text => {
     .replace(/"/g, '&quot;');
 }
 
-const _buildLink = ({id, text, children}) => {
-  const nestedList = children.length > 0
-    ? BuildList(children)
-    : ''
+const _buildLink = ({id, text, children}, flat) => {
+  let nestedList = ''
 
-  return ( id && text )
-    ? `<li><a href="#${id}">${_escText(text)}</a>${nestedList}</li>`
-    : ''
+  if (children.length > 0 && flat) {
+    nestedList = children.map(c => _buildLink(c, flat));
+  } else if (children.length > 0) {
+    nestedList = BuildList(children)
+  }
+
+  if (id && text && flat) {
+    return `<li><a href="#${id}">${_escText(text)}</a></li>${(nestedList || []).join('')}`
+  } else if (id && text) {
+    return `<li><a href="#${id}">${_escText(text)}</a>${nestedList}</li>`
+  } else {
+    return nestedList;
+  }
 }
 
-const BuildList = (listItems, ul) => {
+const BuildList = (listItems, ul, flat) => {
   const listType = ul ? 'ul' : 'ol'
   const list = listItems
     .sort((a, b) => a.order - b.order)
-    .map(li => _buildLink(li))
+    .map(li => _buildLink(li, flat))
 
   return ( list.length > 0 )
     ? `<${listType}>${list.join('')}</${listType}>`
