@@ -21,9 +21,29 @@ This Eleventy plugin will generate a TOC from page content using an Eleventy fil
 npm i --save eleventy-plugin-toc
 ```
 
-### 2. Add the plugin to Eleventy config
+### 2. Make sure your headings have anchor IDs
 
-Note: you'll need to make sure you have `id`s on heading elements before this plugin will create a TOC. If there aren't `id`s, there will be nothing for links in this TOC to link to. (I recommend using [`markdown-it-anchor`](https://www.npmjs.com/package/markdown-it-anchor) to add those `id`s to the headings: [Eleventy config example](https://github.com/11ty/11ty.io/blob/master/.eleventy.js#L67-L81))
+**Your heading elements must have `id`s before this plugin will create a TOC.** If there aren't `id`s on your headings, there will be no anchors for this plugin to link to.
+
+I use [`markdown-it-anchor`](https://www.npmjs.com/package/markdown-it-anchor) to add those `id`s to the headings: [Eleventy config example](https://github.com/jdsteinbach/jdsteinbach.github.io/blob/blog/.eleventy.js)
+
+```js
+// .eleventy.js
+
+const markdownIt = require('markdown-it')
+const markdownItAnchor = require('markdown-it-anchor')
+
+module.exports = eleventyConfig => {
+  // Markdown
+  eleventyConfig.setLibrary(
+    'md',
+    markdownIt().use(markdownItAnchor)
+  )
+  // ... your other Eleventy config options
+}
+```
+
+### 3. Add this plugin to your Eleventy config
 
 ```js
 // .eleventy.js
@@ -35,7 +55,7 @@ module.exports = function (eleventyConfig) {
 }
 ```
 
-### 3. Use the filter in your template
+### 4. Use the filter in your template
 
 ```liquid
 <article>
@@ -43,10 +63,33 @@ module.exports = function (eleventyConfig) {
 </article>
 <aside>
   {{ content | toc }}
-</article>
+</aside>
 ```
 
-### 4. Override default options if necessary
+If you're using Nunjucks, include the `safe` filter:
+
+```njk
+
+<article>
+  {{ content | safe }}
+</article>
+<aside>
+  {{ content | toc | safe }}
+</aside>
+```
+
+If you want to conditionally render a wrapper element, the filter will return `undefined` when no markup is generated:
+
+
+```liquid
+{% if content | toc %}
+  <aside>
+    {{ content | toc }}
+  </aside>
+{% endif %}
+```
+
+### 5. Override default options if necessary
 
 Pass a stringified JSON object (must be `JSON.parse()`-able) as an option for in your template. Because this is an object, you only need to include the key-value pairs you need to override; [defaults](#default-options) will be preserved.
 
