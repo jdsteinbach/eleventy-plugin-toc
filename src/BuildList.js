@@ -4,24 +4,26 @@ const _escText = text => {
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+    .replace(/"/g, '&quot;')
 }
 
 const _buildLink = ({id, text, children}, flat) => {
   let nestedList = ''
 
   if (children.length > 0 && flat) {
-    nestedList = children.map(c => _buildLink(c, flat));
+    nestedList = children.map(c => _buildLink(c, flat))
   } else if (children.length > 0) {
     nestedList = BuildList(children)
   }
 
   if (id && text && flat) {
-    return `<li><a href="#${id}">${_escText(text)}</a></li>${(nestedList || []).join('')}`
+    return `<li><a href="#${id}">${_escText(text)}</a></li>${(
+      nestedList || []
+    ).join('')}`
   } else if (id && text) {
     return `<li><a href="#${id}">${_escText(text)}</a>${nestedList}</li>`
   } else {
-    return nestedList;
+    return nestedList
   }
 }
 
@@ -31,9 +33,7 @@ const BuildList = (listItems, ul, flat) => {
     .sort((a, b) => a.order - b.order)
     .map(li => _buildLink(li, flat))
 
-  return ( list.length > 0 )
-    ? `<${listType}>${list.join('')}</${listType}>`
-    : ''
+  return list.length > 0 ? `<${listType}>${list.join('')}</${listType}>` : ''
 }
 
 module.exports = BuildList

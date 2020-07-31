@@ -1,14 +1,16 @@
 const SimplifyResults = (tag, tags, $) => {
-  let results = []
+  const results = []
 
   $(`${tag}[id]`).each((i, el) => {
     const tag = el.name
     const id = $(el).attr('id')
     const text = $(el).text().replace(' #', '')
     const hierarchy = tags.indexOf(tag)
-    const parent = ( hierarchy > 0 )
-      ? $(el).prevAll(tags[hierarchy - 1]).attr('id')
-      : false
+    const parent =
+      hierarchy > 0 &&
+      $(el)
+        .prevAll(tags[hierarchy - 1])
+        .attr('id')
 
     results.push({
       order: i,
@@ -16,7 +18,7 @@ const SimplifyResults = (tag, tags, $) => {
       id,
       text,
       parent,
-      children: []
+      children: [],
     })
   })
 
