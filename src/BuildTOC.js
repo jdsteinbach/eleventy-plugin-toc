@@ -1,5 +1,5 @@
 const cheerio = require('cheerio')
-const parseJSON = require('parse-json')
+const debug = require("debug")("plugin-toc")
 
 const ParseOptions = require('./ParseOptions')
 const NestHeadings = require('./NestHeadings')
@@ -18,9 +18,9 @@ const BuildTOC = (text, opts) => {
 
   const headings = NestHeadings(tags, $)
 
-  return ( headings )
+  return (headings.length > 0)
     ? `<${wrapper} class="${wrapperClass}">${BuildList(headings)}</${wrapper}>`
-    : false
+    : undefined
 }
 
 module.exports = BuildTOC
