@@ -1,7 +1,7 @@
 const ParseOptions = (userOptions, defaultOptions) => {
   let safeOptions = {}
   try {
-    safeOptions = JSON.parse(userOptions);
+    safeOptions = JSON.parse(userOptions)
   } catch (e) {
     safeOptions = {}
   }
