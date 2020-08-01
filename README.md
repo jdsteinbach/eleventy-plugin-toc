@@ -56,6 +56,17 @@ module.exports = function (eleventyConfig) {
 }
 ```
 
+#### 3.1 You can override the default plugin options
+
+```js
+module.exports = function (eleventyConfig) {
+  eleventyConfig.addPlugin(pluginTOC, {
+    tags: ['h2', 'h3'],
+    wrapper: 'div'
+  })
+}
+```
+
 ### 4. Use the filter in your template
 
 ```liquid
@@ -70,7 +81,6 @@ module.exports = function (eleventyConfig) {
 If you're using Nunjucks, include the `safe` filter:
 
 ```njk
-
 <article>
   {{ content | safe }}
 </article>
@@ -102,5 +112,4 @@ Pass a stringified JSON object (must be `JSON.parse()`-able) as an option for in
 
 ## Roadmap
 
-- [ ] I'd like to expose the default options to overriding in an Eleventy config file
 - [ ] Some tests would be nice
