@@ -1,16 +1,20 @@
 const ParseOptions = (userOptions, defaultOptions) => {
-  let safeOptions = {}
-  try {
-    if (typeof userOptions === 'string') {
-      safeOptions = JSON.parse(userOptions)
-    } else if (typeof userOptions === 'object') {
-      safeOptions = userOptions
-    }
-  } catch (e) {
-    safeOptions = {}
+  let safeDefaultOptions = {}
+  let safeUserOptions = {}
+
+  if (defaultOptions && defaultOptions.constructor === {}.constructor) {
+    safeDefaultOptions = defaultOptions
   }
 
-  return Object.assign({}, defaultOptions, safeOptions)
+  if (userOptions && typeof userOptions === 'string') {
+    try {
+      safeUserOptions = JSON.parse(userOptions)
+    } catch (e) {} // eslint-disable-line
+  } else if (userOptions && userOptions.constructor === {}.constructor) {
+    safeUserOptions = userOptions
+  }
+
+  return Object.assign({}, safeDefaultOptions, safeUserOptions)
 }
 
 module.exports = ParseOptions
