@@ -6,10 +6,11 @@ This Eleventy plugin will generate a TOC from page content using an Eleventy fil
 
 ```js
 {
-  tags: ['h2', 'h3', 'h4'], // which heading tags are selected
-                            // headings must each have an ID attribute
-  wrapper: 'nav',           // element to put around the root `ol`
-  wrapperClass: 'toc'       // class for the element around the root `ol`
+  tags: ['h2', 'h3', 'h4'], // which heading tags are selected headings must each have an ID attribute
+  wrapper: 'nav',           // element to put around the root `ol`/`ul`
+  wrapperClass: 'toc',      // class for the element around the root `ol`/`ul`
+  ul: false,                // if to use `ul` instead of `ol`
+  flat: false,              // if subheadings should appear as child of parent or as a sibling
 }
 ```
 
@@ -55,6 +56,17 @@ module.exports = function (eleventyConfig) {
 }
 ```
 
+#### 3.1 You can override the default plugin options
+
+```js
+module.exports = function (eleventyConfig) {
+  eleventyConfig.addPlugin(pluginTOC, {
+    tags: ['h2', 'h3'],
+    wrapper: 'div'
+  })
+}
+```
+
 ### 4. Use the filter in your template
 
 ```liquid
@@ -69,7 +81,6 @@ module.exports = function (eleventyConfig) {
 If you're using Nunjucks, include the `safe` filter:
 
 ```njk
-
 <article>
   {{ content | safe }}
 </article>
@@ -96,10 +107,9 @@ Pass a stringified JSON object (must be `JSON.parse()`-able) as an option for in
 ```liquid
 <aside>
   {{ content | toc: '{"tags":["h2","h3"],"wrapper":"div","wrapperClass":"content-tableau"}' }}
-</article>
+</aside>
 ```
 
 ## Roadmap
 
-* [ ] I'd like to expose the default options to overriding in an Eleventy config file
-* [ ] Some tests would be nice
+- [ ] Some tests would be nice
