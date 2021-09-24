@@ -19,9 +19,6 @@
     "no-trailing-spaces": "error",
     "quotes": ["warn", "single", { "avoidEscape": true }],
     "indent": ["error", 2],
-    "semi": ["error", "never"],
-    "node/no-unpublished-require": ["error", {
-        "allowModules": ["cheerio"]
-    }]
+    "semi": ["error", "never"]
   }
 }
