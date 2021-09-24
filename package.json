@@ -1,6 +1,6 @@
 {
   "name": "eleventy-plugin-toc",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Eleventy filter to generate a Table of Contents in a template",
   "main": ".eleventy.js",
   "scripts": {
@@ -24,10 +24,8 @@
     "url": "https://github.com/jdsteinbach/eleventy-plugin-toc/issues"
   },
   "homepage": "https://github.com/jdsteinbach/eleventy-plugin-toc#readme",
-  "dependencies": {
-    "cheerio": "^1.0.0-rc.2"
-  },
   "devDependencies": {
+    "cheerio": "^1.0.0-rc.10",
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-node": "^11.1.0",
