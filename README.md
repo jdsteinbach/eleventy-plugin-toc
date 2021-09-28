@@ -67,7 +67,9 @@ module.exports = function (eleventyConfig) {
 }
 ```
 
-### 4. Use the filter in your template
+### 4. Use the filter in your layout template(s)
+
+Because Eleventy only provides the `content` variable to layout templates (not to content files), you'll need to put this markup in a layout template:
 
 ```liquid
 <article>
