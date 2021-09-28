@@ -112,6 +112,17 @@ Pass a stringified JSON object (must be `JSON.parse()`-able) as an option for in
 </aside>
 ```
 
+## Options
+
+| Name | Default Value | Type | Purpose |
+| --- | --- | --- | --- |
+| tags | `['h2', 'h3', 'h4']` | array of strings | which heading tags are used to generate the table of contents |
+| wrapper | `'nav'` | string | tag of element wrapping toc lists; `''` removes wrapper element |
+| wrapperClass | `'toc'` | string | `class` on element wrapping toc lists |
+| wrapperLabel | `undefined` | string | `aria-label` on element wrapping toc lists |
+| ul | `false` | boolean | lists are `ul` if true, `ol` if `false` |
+| flat | `false` | boolean | use flat list if `true`; use nested lists if false |
+
 ## Roadmap
 
 - [ ] Some tests would be nice
