@@ -7,13 +7,13 @@ const _escText = text => {
     .replace(/"/g, '&quot;')
 }
 
-const _buildLink = ({id, text, children}, flat) => {
+const _buildLink = ({id, text, children}, isUl, flat) => {
   let nestedList = ''
 
   if (children.length > 0 && flat) {
-    nestedList = children.map(c => _buildLink(c, flat))
+    nestedList = children.map(c => _buildLink(c, isUl, flat))
   } else if (children.length > 0) {
-    nestedList = BuildList(children)
+    nestedList = BuildList(children, isUl, flat)
   }
 
   if (id && text && flat) {
@@ -27,11 +27,11 @@ const _buildLink = ({id, text, children}, flat) => {
   }
 }
 
-const BuildList = (listItems, ul, flat) => {
-  const listType = ul ? 'ul' : 'ol'
+const BuildList = (listItems, isUl, flat) => {
+  const listType = isUl ? 'ul' : 'ol'
   const list = listItems
     .sort((a, b) => a.order - b.order)
-    .map(li => _buildLink(li, flat))
+    .map(li => _buildLink(li, isUl, flat))
 
   return list.length > 0 ? `<${listType}>${list.join('')}</${listType}>` : ''
 }
