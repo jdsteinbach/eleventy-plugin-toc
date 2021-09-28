@@ -8,12 +8,16 @@ const defaults = {
   tags: ['h2', 'h3', 'h4'],
   wrapper: 'nav',
   wrapperClass: 'toc',
+  wrapperLabel: undefined,
   ul: false,
   flat: false,
 }
 
 const BuildTOC = (text, opts) => {
-  const {tags, wrapper, wrapperClass, ul, flat} = ParseOptions(opts, defaults)
+  const {tags, wrapper, wrapperClass, wrapperLabel, ul, flat} = ParseOptions(
+    opts,
+    defaults
+  )
 
   const $ = cheerio.load(text)
 
@@ -23,8 +27,10 @@ const BuildTOC = (text, opts) => {
     return undefined
   }
 
+  const label = wrapperLabel ? `aria-label="${wrapperLabel}"` : ''
+
   return wrapper
-    ? `<${wrapper} class="${wrapperClass}">
+    ? `<${wrapper} class="${wrapperClass}" ${label}>
         ${BuildList(headings, ul, flat)}
       </${wrapper}>`
     : BuildList(headings, ul, flat)
