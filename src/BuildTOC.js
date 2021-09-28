@@ -19,10 +19,15 @@ const BuildTOC = (text, opts) => {
 
   const headings = NestHeadings(tags, $)
 
-  return headings.length > 0
+  if (headings.length === 0) {
+    return undefined
+  }
+
+  return wrapper
     ? `<${wrapper} class="${wrapperClass}">
-        ${BuildList(headings, ul, flat)}</${wrapper}>`
-    : undefined
+        ${BuildList(headings, ul, flat)}
+      </${wrapper}>`
+    : BuildList(headings, ul, flat)
 }
 
 module.exports = BuildTOC
