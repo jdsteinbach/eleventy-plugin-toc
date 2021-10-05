@@ -123,6 +123,24 @@ Pass a stringified JSON object (must be `JSON.parse()`-able) as an option for in
 | ul | `false` | boolean | lists are `ul` if true, `ol` if `false` |
 | flat | `false` | boolean | use flat list if `true`; use nested lists if false |
 
+## Debugging
+
+For debugging output from this plugin, prefix your Eleventy command with `DEBUG=EleventyPluginTOC*`. For example, from CLI,
+
+```sh
+DEBUG=EleventyPluginTOC* npx @11ty/eleventy --serve
+```
+
+or if your command is in `package.json` `scripts`,
+
+```json
+{
+  "scripts": {
+    "start": "DEBUG=EleventyPluginTOC* eleventy --serve"
+  }
+}
+```
+
 ## Roadmap
 
 - [ ] Some tests would be nice
