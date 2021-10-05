@@ -4,7 +4,7 @@
   "description": "Eleventy filter to generate a Table of Contents in a template",
   "main": ".eleventy.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "lint": "eslint src/**",
     "lint:fix": "eslint src/** --fix"
   },
@@ -31,8 +31,10 @@
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jest": "^24.5.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.2.4",
     "prettier": "^2.4.1"
   }
 }
