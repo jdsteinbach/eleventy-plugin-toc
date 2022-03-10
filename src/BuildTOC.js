@@ -11,13 +11,12 @@ const defaults = {
   wrapperLabel: undefined,
   ul: false,
   flat: false,
+  anchorClass: undefined,
 }
 
 const BuildTOC = (text, opts) => {
-  const {tags, wrapper, wrapperClass, wrapperLabel, ul, flat} = ParseOptions(
-    opts,
-    defaults
-  )
+  const {tags, wrapper, wrapperClass, wrapperLabel, ul, flat, anchorClass} =
+    ParseOptions(opts, defaults)
 
   const $ = cheerio.load(text)
 
@@ -31,9 +30,9 @@ const BuildTOC = (text, opts) => {
 
   return wrapper
     ? `<${wrapper} class="${wrapperClass}" ${label}>
-        ${BuildList(headings, ul, flat)}
+        ${BuildList(headings, ul, flat, anchorClass)}
       </${wrapper}>`
-    : BuildList(headings, ul, flat)
+    : BuildList(headings, ul, flat, anchorClass)
 }
 
 module.exports = BuildTOC

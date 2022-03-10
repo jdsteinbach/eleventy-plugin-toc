@@ -7,7 +7,7 @@ const _escText = text => {
     .replace(/"/g, '&quot;')
 }
 
-const _buildLink = ({id, text, children}, ul, flat) => {
+const _buildLink = ({id, text, children}, ul, flat, anchorClass) => {
   let nestedList = ''
 
   if (children.length > 0 && flat) {
@@ -16,22 +16,26 @@ const _buildLink = ({id, text, children}, ul, flat) => {
     nestedList = BuildList(children, ul, flat)
   }
 
+  const anchorClassAttribute = anchorClass ? ` class="${anchorClass}"` : ''
+
   if (id && text && flat) {
-    return `<li><a href="#${id}">${_escText(text)}</a></li>${(
-      nestedList || []
-    ).join('')}`
+    return `<li><a href="#${id}"${anchorClassAttribute}>${_escText(
+      text
+    )}</a></li>${(nestedList || []).join('')}`
   } else if (id && text) {
-    return `<li><a href="#${id}">${_escText(text)}</a>${nestedList}</li>`
+    return `<li><a href="#${id}"${anchorClassAttribute}>${_escText(
+      text
+    )}</a>${nestedList}</li>`
   } else {
     return nestedList
   }
 }
 
-const BuildList = (listItems, ul, flat) => {
+const BuildList = (listItems, ul, flat, anchorClass) => {
   const listType = ul ? 'ul' : 'ol'
   const list = listItems
     .sort((a, b) => a.order - b.order)
-    .map(li => _buildLink(li, ul, flat))
+    .map(li => _buildLink(li, ul, flat, anchorClass))
 
   return list.length > 0 ? `<${listType}>${list.join('')}</${listType}>` : ''
 }

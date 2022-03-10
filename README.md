@@ -122,6 +122,7 @@ Pass a stringified JSON object (must be `JSON.parse()`-able) as an option for in
 | wrapperLabel | `undefined` | string | `aria-label` on element wrapping toc lists |
 | ul | `false` | boolean | lists are `ul` if true, `ol` if `false` |
 | flat | `false` | boolean | use flat list if `true`; use nested lists if false |
+| anchorClass | `undefined` | string | add a class to individual links |
 
 ## Roadmap
 
