@@ -13,7 +13,7 @@ const defaults = {
   flat: false,
 }
 
-const BuildTOC = (text, opts) => {
+function BuildTOC(text, opts) {
   const {tags, wrapper, wrapperClass, wrapperLabel, ul, flat} = ParseOptions(
     opts,
     defaults
@@ -29,11 +29,12 @@ const BuildTOC = (text, opts) => {
 
   const label = wrapperLabel ? `aria-label="${wrapperLabel}"` : ''
 
-  return wrapper
-    ? `<${wrapper} class="${wrapperClass}" ${label}>
-        ${BuildList(headings, ul, flat)}
-      </${wrapper}>`
-    : BuildList(headings, ul, flat)
+  const content = BuildList(headings, ul, flat);
+  return (
+      typeof wrapper === 'function' ? wrapper.call(this, text, opts)
+    : wrapper ? `<${wrapper} class="${wrapperClass}" ${label}>${content}</${wrapper}>`
+    : content
+  );
 }
 
 module.exports = BuildTOC

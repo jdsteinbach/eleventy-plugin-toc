@@ -114,14 +114,20 @@ Pass a stringified JSON object (must be `JSON.parse()`-able) as an option for in
 
 ## Options
 
-| Name | Default Value | Type | Purpose |
-| --- | --- | --- | --- |
-| tags | `['h2', 'h3', 'h4']` | array of strings | which heading tags are used to generate the table of contents |
-| wrapper | `'nav'` | string | tag of element wrapping toc lists; `''` removes wrapper element |
-| wrapperClass | `'toc'` | string | `class` on element wrapping toc lists |
-| wrapperLabel | `undefined` | string | `aria-label` on element wrapping toc lists |
-| ul | `false` | boolean | lists are `ul` if true, `ol` if `false` |
-| flat | `false` | boolean | use flat list if `true`; use nested lists if false |
+| Name         | Default Value        | Type             | Purpose                                                         |
+| ------------ | -------------------- | ---------------- | --------------------------------------------------------------- |
+| tags         | `['h2', 'h3', 'h4']` | string[]         | which heading tags are used to generate the table of contents   |
+| wrapper      | `'nav'`              | string\|function | tag of element wrapping toc lists; `''` removes wrapper element |
+| wrapperClass | `'toc'`              | string           | `class` on element wrapping toc lists                           |
+| wrapperLabel | `undefined`          | string           | `aria-label` on element wrapping toc lists                      |
+| ul           | `false`              | boolean          | lists are `ul` if true, `ol` if `false`                         |
+| flat         | `false`              | boolean          | use flat list if `true`; use nested lists if false              |
+
+## Wrapper as a Function
+You may pass a function which takes `content` (a string of HTML content) and
+`label` (typically a string like `aria-label="page toc"`) and returns an HTML
+string of the completed table of content's HTML. The function's `this` binding
+will be the same as `addFilter`'s'
 
 ## Roadmap
 
