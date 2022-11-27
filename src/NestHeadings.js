@@ -1,10 +1,10 @@
 const SimplifyResults = require('./SimplifyResults')
 
-const NestHeadings = (tags, $) => {
+const NestHeadings = (tags, extractText, $) => {
   const temp = {}
 
   tags.forEach(t => {
-    temp[t] = SimplifyResults(t, tags, $)
+    temp[t] = SimplifyResults(t, tags, extractText, $)
   })
 
   const headings = []
