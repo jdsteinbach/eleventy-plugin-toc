@@ -122,6 +122,7 @@ Pass a stringified JSON object (must be `JSON.parse()`-able) as an option for in
 | wrapperLabel | `undefined` | string | `aria-label` on element wrapping toc lists |
 | ul | `false` | boolean | lists are `ul` if true, `ol` if `false` |
 | flat | `false` | boolean | use flat list if `true`; use nested lists if false |
+| extractText | `undefined` | function | A function that can be used to extract the text from the heading (if custom processing is needed). It receives the cheerio header element as argument |
 
 ## Roadmap
 

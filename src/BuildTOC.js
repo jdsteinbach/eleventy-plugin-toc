@@ -11,6 +11,7 @@ const defaults = {
   wrapperLabel: undefined,
   ul: false,
   flat: false,
+  extractText: undefined,
 }
 
 const BuildTOC = (text, opts) => {
@@ -21,7 +22,7 @@ const BuildTOC = (text, opts) => {
 
   const $ = cheerio.load(text)
 
-  const headings = NestHeadings(tags, $)
+  const headings = NestHeadings(tags, opts.extractText, $)
 
   if (headings.length === 0) {
     return undefined
